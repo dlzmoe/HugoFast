@@ -1,18 +1,88 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <template>
+      <el-table :data="tableData" border style="width: 100%" v-loading="loading">
+        <el-table-column prop="name" label="标题" width="120">
+        </el-table-column>
+        <el-table-column fixed="right" label="操作" width="100">
+          <template slot-scope="scope">
+            <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
+            <el-button type="text" size="small">编辑</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </template>
+
+    <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage"
+      :page-sizes="[10, 20, 30, 40]" :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper"
+      :total="totalItems">
+    </el-pagination>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
+import axios from "axios";
 export default {
   name: 'HomeView',
   components: {
-    HelloWorld
+
+  },
+  data() {
+    return {
+      loading: true,
+      githubrepo: '',
+      tableData: [],
+      currentPage: 1,
+      pageSize: 10,
+      totalItems: 0
+    }
+  },
+  methods: {
+    async loadData() {
+      axios
+        .get("https://api.github.com/repos/" + this.githubrepo + "/contents/content/blog")
+        .then((response) => {
+          console.log(response.data);
+          
+          const allData = response.data.slice().reverse();
+
+          // 根据当前页码和每页显示的数量进行数据切片
+          const startIndex = (this.currentPage - 1) * this.pageSize;
+          const endIndex = startIndex + this.pageSize;
+          this.tableData = allData.slice(startIndex, endIndex);
+          this.loading = false;
+
+          // 更新总数据量
+          this.totalItems = allData.length;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    handleSizeChange(newSize) {
+      this.pageSize = newSize;
+      this.loadData();
+
+    },
+    handleCurrentChange(newPage) {
+      this.currentPage = newPage;
+      this.loadData();
+      // 滚动到页面顶部
+      window.scrollTo();
+    }
+  },
+  mounted() {
+    this.githubrepo = localStorage.getItem('token');
+    axios
+      .get("https://api.github.com/repos/" + this.githubrepo)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    this.loadData();
   }
 }
 </script>

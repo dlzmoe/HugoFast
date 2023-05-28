@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #eee;
+}
+
+p {
+  margin: 1em 0
+}
+
+.el-pagination {
+  margin-top: 1em;
+}
+
+@import url(./modules/login.css);
