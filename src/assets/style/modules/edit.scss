@@ -1,0 +1,20 @@
+.editwrap {
+  .el-row {
+    margin-bottom: 1em;
+
+    .el-input {
+      margin-top: 5px;
+    }
+  }
+
+  .el-textarea__inner{
+    height: 500px;
+    background: #222;
+    color: #f3f3f3;
+    font-size: 16px;
+  }
+
+  .el-tag {
+    margin-left: 10px;
+  }
+}

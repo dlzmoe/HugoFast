@@ -5,11 +5,14 @@
       <TopHeader />
       <template>
         <el-table :data="tableData" border style="width: 100%" v-loading="loading">
-          <el-table-column prop="name" label="标题"> </el-table-column>
+          <el-table-column prop="name" label="标题">
+            <template slot-scope="scope">
+              <span>{{ scope.row.name }}</span>
+            </template>
+          </el-table-column>
           <el-table-column fixed="right" label="操作" width="200">
             <template slot-scope="scope">
-              <a :href="`/edit?name=${scope.row.name}`">修改</a>
-              <!-- <a :href="`/preview?id=${scope.row.id}`" class="edit preview">预览</a> -->
+              <a :href="`/edit?name=${scope.row.name}`" class="edit-btn">修改</a>
             </template>
           </el-table-column>
         </el-table>

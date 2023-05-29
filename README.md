@@ -8,6 +8,7 @@ https://github.com/lovezsh/vue-admin-hugo/
 
 **计划：**
 - [ ] 为hugo博客写一个在线管理服务
+- [ ]暂未对接token信息，所以没有做鉴权，通过仓库名只能访问数据
 
 **功能：**
 - [x] 登陆 / 登出 / 手动刷新缓存
@@ -15,6 +16,15 @@ https://github.com/lovezsh/vue-admin-hugo/
 - [ ] 编辑旧文章
 - [ ] 发布新文章
 - [ ] 自定义配置，如 博客名称, 域名, 昵称 等
+
+**展示：**
+
+样式目前还比较简陋，重心在主要功能架构上，后期重新设计UI。
+
+![image](https://imgbed.netlify.app/images/image.5u1ybxnqk980.webp)
+![image](https://imgbed.netlify.app/images/image.44obmiv90no0.webp)
+![image](https://imgbed.netlify.app/images/image.1c2evayuvaz.webp)
+![image](https://imgbed.netlify.app/images/image.237a8kiq3sxs.webp)
 
 **参考：**
 - https://segmentfault.com/a/1190000015144126#item-0-3

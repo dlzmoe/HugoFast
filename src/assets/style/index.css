@@ -30,3 +30,12 @@ p {
   border-radius: 4px;
   margin-top: 50px;
 }
+
+.edit-btn {
+  color: #333;
+  text-decoration: underline;
+}
+
+.vue-simple-markdown {
+  white-space: inherit !important;
+}

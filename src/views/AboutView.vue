@@ -3,7 +3,9 @@
     <Aside />
     <div class="container about">
       <TopHeader />
-
+      <div>
+        <vue-simple-markdown :source="articleDetail.context"></vue-simple-markdown>
+      </div>
     </div>
   </div>
 </template>
@@ -11,6 +13,7 @@
 <script>
 import Aside from "@/components/Aside.vue";
 import TopHeader from "@/components/TopHeader.vue";
+
 
 import axios from "axios";
 export default {
@@ -21,15 +24,26 @@ export default {
   },
   data() {
     return {
-     
+      articleDetail: {
+        context: '',
+      }
     };
   },
   methods: {
-    
+
   },
+
   mounted() {
     this.githubrepo = localStorage.getItem("githubRepoHugoToken");
-   
+    axios
+        .get(
+          "https://raw.githubusercontent.com/lovezsh/vue-admin-hugo/main/README.md")
+        .then((response) => {
+          this.articleDetail.context = response.data;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
   },
 };
 </script>

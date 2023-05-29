@@ -28,6 +28,15 @@ p {
   margin-top: 50px
 }
 
+.edit-btn {
+  color: #333;
+  text-decoration: underline;
+}
+
+.vue-simple-markdown {
+  white-space: inherit !important;
+}
+
 @import url(./modules/aside.css);
 @import url(./modules/login.css);
 @import url(./modules/edit.css);
