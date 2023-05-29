@@ -4,7 +4,7 @@
     <div class="container about">
       <TopHeader />
       <el-row>
-        <el-col :span="12">{{  }}<el-input v-model="metaData.date" placeholder="请输入内容"></el-input></el-col>
+        <el-col :span="12"><el-input v-model="metaData.date" placeholder="请输入内容"></el-input></el-col>
         <el-col :span="12">{{ metaData.slug }}</el-col>
       </el-row>
       <el-row>
@@ -30,17 +30,14 @@ export default {
     return {
       id: "",
       markdownContent: "",
-      metaData: "",
+      metaData: null,
     };
   },
   methods: {
     async getDetails() {
       axios
         .get(
-          "https://raw.githubusercontent.com/lovezsh/hugo-blog/main/content/blog/" +
-            this.id +
-            ""
-        )
+          "https://raw.githubusercontent.com/lovezsh/hugo-blog/main/content/blog/" + this.id)
         .then((response) => {
           this.markdownContent = response.data;
         })
@@ -85,13 +82,7 @@ export default {
   mounted() {
     const id = this.$route.query.name;
     this.id = id;
-    this.githubrepo = localStorage.getItem("githubRepoHugoToken");
-    axios
-      .get("https://api.github.com/repos/" + this.githubrepo)
-      .then((response) => {})
-      .catch((error) => {
-        console.error(error);
-      });
+
     this.getDetails();
   },
 };

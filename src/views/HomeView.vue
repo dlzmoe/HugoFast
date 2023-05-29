@@ -15,15 +15,9 @@
         </el-table>
       </template>
 
-      <el-pagination
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page="currentPage"
-        :page-sizes="[10, 20, 30, 40]"
-        :page-size="pageSize"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="totalItems"
-      >
+      <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage"
+        :page-sizes="[10, 20, 30, 40]" :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper"
+        :total="totalItems">
       </el-pagination>
     </div>
   </div>
@@ -46,31 +40,42 @@ export default {
       githubrepo: "",
       tableData: [],
       currentPage: 1,
-      pageSize: 7,
+      pageSize: 10,
       totalItems: 0,
     };
   },
   methods: {
     async loadData() {
-      axios
-        .get("https://api.github.com/repos/" + this.githubrepo + "/contents/content/blog")
-        .then((response) => {
-          console.log(response.data);
+      const tableData = JSON.parse(localStorage.getItem("tableData"));
+      // console.log(tableData);
+      // 查找是否有历史缓存
+      if (tableData) {
+        // 有缓存直接插入vue中，提高性能和加载速度，比直接从GitHub api中拿数据要好的多。
+        this.tableData = tableData;
+        this.loading = false;
+      } else {
+        // 没有缓存, 重新调用api数据存入缓存中
+        axios
+          .get("https://api.github.com/repos/" + this.githubrepo + "/contents/content/blog")
+          .then((response) => {
+            const allData = response.data.slice().reverse();
 
-          const allData = response.data.slice().reverse();
+            // 根据当前页码和每页显示的数量进行数据切片
+            const startIndex = (this.currentPage - 1) * this.pageSize;
+            const endIndex = startIndex + this.pageSize;
+            this.tableData = allData.slice(startIndex, endIndex);
+            this.loading = false;
 
-          // 根据当前页码和每页显示的数量进行数据切片
-          const startIndex = (this.currentPage - 1) * this.pageSize;
-          const endIndex = startIndex + this.pageSize;
-          this.tableData = allData.slice(startIndex, endIndex);
-          this.loading = false;
 
-          // 更新总数据量
-          this.totalItems = allData.length;
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+            // 更新总数据量
+            this.totalItems = allData.length;
+            localStorage.setItem("tableData", JSON.stringify(this.tableData));
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+
     },
     handleSizeChange(newSize) {
       this.pageSize = newSize;
@@ -85,15 +90,24 @@ export default {
   },
   mounted() {
     this.githubrepo = localStorage.getItem("githubRepoHugoToken");
-    axios
-      .get("https://api.github.com/repos/" + this.githubrepo)
-      .then((response) => {
-        console.log(response.data);
-        
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+
+    const BasicData = JSON.parse(localStorage.getItem("BasicData"));
+    // console.log(BasicData);
+    if (BasicData) {
+      // 把数据传入自己需要的地方
+
+    } else {
+      // 首次加载会调用api拿数据放在缓存中
+      axios
+        .get("https://api.github.com/repos/" + this.githubrepo)
+        .then((response) => {
+          // 把仓库基础数据存入缓存中
+          localStorage.setItem("BasicData", JSON.stringify(response.data));
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
     this.loadData();
   },
 };

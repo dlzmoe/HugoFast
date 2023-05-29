@@ -1,6 +1,7 @@
 {
   "name": "vue-admin-hugo",
   "version": "0.1.0",
+  "author": "lovezsh",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",

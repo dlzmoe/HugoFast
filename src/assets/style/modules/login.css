@@ -8,6 +8,7 @@
 .login .container {
   width: 100%;
   max-width: 600px;
+  margin: 0;
 }
 .login .container .el-button {
   margin-top: 1em;
