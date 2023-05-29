@@ -3,8 +3,7 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-const routes = [
-  {
+const routes = [{
     path: '/login',
     name: 'login',
     component: function () {
@@ -16,6 +15,13 @@ const routes = [
     name: 'home',
     component: function () {
       return import('../views/HomeView.vue')
+    }
+  },
+  {
+    path: '/edit',
+    name: 'edit',
+    component: function () {
+      return import('../views/EditView.vue')
     }
   },
   {

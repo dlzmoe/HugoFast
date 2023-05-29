@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import store from './store'; // 导入Vuex的存储配置
+import store from './store/index'; // 导入Vuex的存储配置
 
 Vue.config.productionTip = false
 

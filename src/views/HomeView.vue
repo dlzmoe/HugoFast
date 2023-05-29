@@ -8,9 +8,8 @@
           <el-table-column prop="name" label="标题"> </el-table-column>
           <el-table-column fixed="right" label="操作" width="200">
             <template slot-scope="scope">
-              <el-button @click="handleClick(scope.row)" type="text" size="small">
-                编辑
-              </el-button>
+              <a :href="`/edit?name=${scope.row.name}`">修改</a>
+              <!-- <a :href="`/preview?id=${scope.row.id}`" class="edit preview">预览</a> -->
             </template>
           </el-table-column>
         </el-table>
@@ -90,6 +89,7 @@ export default {
       .get("https://api.github.com/repos/" + this.githubrepo)
       .then((response) => {
         console.log(response.data);
+        
       })
       .catch((error) => {
         console.error(error);
