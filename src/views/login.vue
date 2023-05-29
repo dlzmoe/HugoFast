@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     setLogin() {
-      localStorage.setItem('token', this.githubrepo);
+      localStorage.setItem('githubRepoHugoToken', this.githubrepo);
       this.$router.push('/')
     }
   },

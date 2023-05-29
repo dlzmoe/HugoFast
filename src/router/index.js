@@ -36,7 +36,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   const pathArr = ['/', '/about']
   if (pathArr.indexOf(to.path) !== -1) {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem('githubRepoHugoToken')
     if (token) {
       next()
     } else {

@@ -16,4 +16,17 @@ p {
   margin-top: 1em;
 }
 
+.layout {
+  padding: 20px;
+}
+
+.container {
+  margin-left: 300px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 4px;
+  margin-top: 50px
+}
+
+@import url(./modules/aside.css);
 @import url(./modules/login.css);
