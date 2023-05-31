@@ -1,7 +1,8 @@
 ## HugoFast
 
-项目来源于我的突发奇想，并且基于热爱折腾的心理，利用GitHub本身提供的Api，将博客管理面板化。
+Github: [https://github.com/lovezsh/HugoFast](https://github.com/lovezsh/HugoFast)
 
+项目来源于我的突发奇想，并且基于热爱折腾的心理，利用GitHub本身提供的Api，将博客管理面板化。
 
 在线访问：
 
@@ -21,8 +22,6 @@
 - [x] 发布新文章
 - [ ] 删除文章功能
 - [ ] 自定义配置，如 博客名称, 域名, 昵称 等
-
-
 
 
 ## How Use?

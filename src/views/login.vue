@@ -1,8 +1,9 @@
 <template>
   <div class="login">
     <div class="container">
+      <h1>HugoFast</h1>
       <p>
-        未检测到您的登陆信息，请重新输入：
+        未检测到您的登陆信息：
         <el-tag type="warning" @click="dialogVisible = true"
           >查看：如何获取GitHub Token?</el-tag
         >
@@ -29,7 +30,7 @@
     </div>
 
     <div class="fixed">
-      <el-link href="https://github.com/lovezsh/vue-admin-hugo" target="_blank">https://github.com/lovezsh/vue-admin-hugo</el-link>
+      <el-link href="https://github.com/lovezsh/HugoFast" target="_blank">Github</el-link>
     </div>
 
     <el-dialog title="如何获取GitHub Token?" :visible.sync="dialogVisible" width="30%">
