@@ -15,7 +15,9 @@ https://github.com/lovezsh/vue-admin-hugo/
 - [x] 登陆 / 登出 / 手动刷新缓存
 - [x] 获取用户仓库列表以及各种数据，仅限文章数据
 - [x] 编辑/发布旧文章
+- [ ] 修改旧文章的标题，时间，标签，分类等元数据
 - [ ] 发布新文章
+- [ ] 删除文章功能
 - [ ] 自定义配置，如 博客名称, 域名, 昵称 等
 
 **展示：**
@@ -32,6 +34,9 @@ https://github.com/lovezsh/vue-admin-hugo/
 1. 前往 [https://github.com/settings/tokens/](https://github.com/settings/tokens/)
 2. 获取以下权限：repo / user
 3. 生成 token
+
+
+## 开发
 
 ```
 yarn

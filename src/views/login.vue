@@ -38,7 +38,7 @@ export default {
     return {
       githubrepo: "",
       ghpToken: "",
-      dialogVisible: true,
+      dialogVisible: false,
     };
   },
   methods: {

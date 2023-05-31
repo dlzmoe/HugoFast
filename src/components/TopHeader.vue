@@ -35,13 +35,13 @@ export default {
   methods: {
     refreshCache() {
       localStorage.removeItem('BasicData');
-      localStorage.removeItem('tableData');
-      this.dialogVisible = true;
+      localStorage.removeItem('allData');
     },
     loginOut() {
+      localStorage.removeItem('ghpToken');
       localStorage.removeItem('githubRepoHugoToken');
       localStorage.removeItem('BasicData');
-      localStorage.removeItem('tableData');
+      localStorage.removeItem('allData');
       this.$router.push('/login');
     }
   }

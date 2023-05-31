@@ -3,18 +3,32 @@
     <Aside />
     <div class="container edit">
       <TopHeader />
-      <div class="editwrap">
+      <div class="editwrap" v-loading="loading">
+        <el-row>
+          <el-col :span="24">
+            <a
+              style="color: #409eff"
+              :href="`https://github.com/${this.githubrepo}/blob/main/content/blog/${this.id}`"
+              target="_blank"
+            >
+              https://github.com/{{ this.githubrepo }} /main/content/blog/{{ this.id }}
+            </a>
+          </el-col>
+        </el-row>
         <el-row :gutter="20">
-          <el-col :span="8">时间：<el-input v-model="result3.date"></el-input></el-col>
-          <el-col :span="8"
-            >分类：<el-input v-model="result4.category"></el-input
+          <el-col :span="6">时间：<el-input v-model="result3.date" disabled></el-input></el-col>
+          <el-col :span="6"
+            >分类：<el-input v-model="result4.category" disabled></el-input
           ></el-col>
-          <el-col :span="8"
+          <el-col :span="6"
+            >标签：<el-input v-model="result5.tags" disabled></el-input
+          ></el-col>
+          <el-col :span="6"
             >slug：<el-input v-model="result1.slug1" disabled></el-input
           ></el-col>
         </el-row>
         <el-row>
-          <el-col :span="24">标题：<el-input v-model="result2.title"></el-input></el-col>
+          <el-col :span="24">标题：<el-input v-model="result2.title" disabled></el-input></el-col>
         </el-row>
         <el-row>
           <el-col :span="24">
@@ -26,8 +40,7 @@
 
         <el-row>
           <el-col :span="24">
-            <el-button type="primary" @click="publishArticle">发布文章</el-button>
-            <el-tag type="danger">暂未对接发布api，提交无效。</el-tag>
+            <el-button v-if="this.id" type="primary" @click="publishArticle">发布文章</el-button>
           </el-col>
         </el-row>
       </div>
@@ -49,6 +62,7 @@ export default {
   },
   data() {
     return {
+      loading: false,
       ghpToken: "",
       githubrepo: "",
       detailsSha: "",
@@ -74,6 +88,7 @@ export default {
   methods: {
     findMatches() {
       if (this.id) {
+        this.loading = true;
         axios
           .get(
             "https://raw.githubusercontent.com/" +
@@ -85,33 +100,6 @@ export default {
             this.text = response.data;
             // console.log(this.text);
             this.extractMetadata();
-
-            const str =
-              `---
-slug: ` +
-              this.result1.slug1 +
-              `
-title: ` +
-              this.result2.title +
-              `
-date: ` +
-              this.result3.date +
-              `
-categories:
-  ` +
-              this.result4.category +
-              `
-tags:
-  ` +
-              this.result5.tags +
-              `
----
-
-` +
-              this.content;
-
-            // 对字符串进行编码
-            this.base64Str = Base64.encode(str);
           })
           .catch((error) => {
             console.error(error);
@@ -160,10 +148,40 @@ tags:
       if (match) {
         this.content = this.text.replace(match[0], "").trim();
       }
+
+      this.loading = false;
     },
     async publishArticle() {
+      this.loading = true;
       // 获取一次提交时间
       this.getDate();
+      const str =
+        `---
+slug: ` +
+        this.result1.slug1 +
+        `
+title: ` +
+        this.result2.title +
+        `
+date: ` +
+        this.result3.date +
+        `
+categories:
+  ` +
+        this.result4.category +
+        `
+tags:
+  ` +
+        this.result5.tags +
+        `
+---
+
+` +
+        this.content;
+
+      // 对字符串进行编码
+      this.base64Str = Base64.encode(str);
+
       axios
         .put(
           "https://api.github.com/repos/" +
@@ -184,9 +202,17 @@ tags:
         )
         .then((response) => {
           console.log(response);
+          this.loading = false;
+          this.$notify({
+            title: "发布成功",
+            type: "success",
+          });
+          localStorage.removeItem("allData");
+          this.$router.push("/");
         })
         .catch((error) => {
           console.error(error);
+          this.loading = false;
         });
     },
   },
@@ -195,26 +221,10 @@ tags:
     this.ghpToken = localStorage.getItem("ghpToken");
     this.githubrepo = localStorage.getItem("githubRepoHugoToken");
 
-    const id = this.$route.query.name;
-    this.id = id;
+    this.id = this.$route.query.name;
+    this.detailsSha = this.$route.query.sha;
 
     this.findMatches();
-
-    // 获取最新的文章信息比如sha等等
-    axios
-      .get(
-        "https://api.github.com/repos/" +
-          this.githubrepo +
-          "/contents/content/blog/" +
-          this.id
-      )
-      .then((response) => {
-        this.detailsSha = response.data.sha;
-        // console.log(this.detailsSha);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
   },
 };
 </script>
