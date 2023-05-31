@@ -3,7 +3,9 @@
     <div class="container">
       <p>
         未检测到您的登陆信息，请重新输入：
-        <el-tag type="warning" @click="dialogVisible = true">查看：如何获取GitHub Token?</el-tag>
+        <el-tag type="warning" @click="dialogVisible = true"
+          >查看：如何获取GitHub Token?</el-tag
+        >
       </p>
       <el-input
         v-model="ghpToken"
@@ -26,11 +28,15 @@
       <el-button type="primary" @click="setLogin" v-if="hide2">确认</el-button>
     </div>
 
+    <div class="fixed">
+      <el-link href="https://github.com/lovezsh/vue-admin-hugo" target="_blank">https://github.com/lovezsh/vue-admin-hugo</el-link>
+    </div>
+
     <el-dialog title="如何获取GitHub Token?" :visible.sync="dialogVisible" width="30%">
       <p>
         1. 前往
-        <a href="https://github.com/settings/tokens/" target="_blank"
-          >https://github.com/settings/tokens/</a
+        <el-link href="https://github.com/settings/tokens/" target="_blank"
+          >https://github.com/settings/tokens/</el-link
         >
       </p>
       <p>2. 获取以下权限：repo / user</p>
