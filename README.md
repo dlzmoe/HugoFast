@@ -18,13 +18,13 @@ yarn serve
 2. 获取以下权限：repo / user
 3. 生成 token
 
+在仓库的 `setting/actions`，滑到最下面，打开actions 的 pr 权限，不然actions自动部署会失败。
+
 <details>
-
-<summary>在你存放hugo源码的仓库中添加 actions  `.github/workflows/hugo.yml`。</summary>
-
+<summary>然后在存放hugo源码的仓库中添加 actions  `.github/workflows/hugo.yml`。</summary>
 
 ```yml
-name: deploy
+name: hugo deploy
 
 on:
     push:
@@ -50,18 +50,20 @@ jobs:
 
             - name: Build Web
               run: hugo
-
-            - name: Deploy Web
-              uses: peaceiris/actions-gh-pages@v3
+            - name: Commit changes
+              run: |
+                git config --global user.email ""
+                git config --global user.name ""
+                git pull
+                git add .
+                git commit -m "my commit"
+            - name: Push changes
+              uses: ad-m/github-push-action@master
               with:
-                  PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
-                  EXTERNAL_REPOSITORY: pseudoyu/pseudoyu.github.io
-                  PUBLISH_BRANCH: master
-                  PUBLISH_DIR: ./public
-                  commit_message: ${{ github.event.head_commit.message }}
+                github_token: ${{ secrets.GITHUB_TOKEN }}
+                branch: main
 ```
 </details>
-
 
 
 ## 介绍

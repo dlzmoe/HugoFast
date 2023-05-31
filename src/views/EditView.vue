@@ -45,9 +45,7 @@
 
         <el-row>
           <el-col :span="24">
-            <el-button v-if="this.id" type="primary" @click="publishArticle"
-              >发布文章</el-button
-            >
+            <el-button v-if="this.id" type="primary" @click="publishArticle">更新文章</el-button>
           </el-col>
         </el-row>
       </div>
