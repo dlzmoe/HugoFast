@@ -6,6 +6,12 @@ https://github.com/lovezsh/vue-admin-hugo/
 
 在线服务：https://hugoadmin.netlify.app/
 
+## How Use?
+
+1. 前往 [https://github.com/settings/tokens/](https://github.com/settings/tokens/)
+2. 获取以下权限：repo / user
+3. 生成 token
+
 ## 介绍
 
 **计划：**
@@ -28,13 +34,6 @@ https://github.com/lovezsh/vue-admin-hugo/
 ![image](https://imgbed.netlify.app/images/image.44obmiv90no0.webp)
 ![image](https://imgbed.netlify.app/images/image.1c2evayuvaz.webp)
 ![image](https://imgbed.netlify.app/images/image.237a8kiq3sxs.webp)
-
-## How Use?
-
-1. 前往 [https://github.com/settings/tokens/](https://github.com/settings/tokens/)
-2. 获取以下权限：repo / user
-3. 生成 token
-
 
 ## 开发
 
