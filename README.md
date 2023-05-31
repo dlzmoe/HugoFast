@@ -18,11 +18,10 @@ yarn serve
 2. 获取以下权限：repo / user
 3. 生成 token
 
+以下操作在hugo源码仓库中进行
+
 4. 在仓库的 `setting/actions`，滑到最下面，打开actions 的 pr 权限，不然actions自动部署会失败。
-
----
-
-5. 在存放hugo源码的仓库中添加 actions  `.github/workflows/hugo.yml`。
+5. 添加一个新的 actions  `.github/workflows/hugo.yml`。
 
 ```yml
 name: hugo deploy
