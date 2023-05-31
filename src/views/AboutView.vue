@@ -14,7 +14,6 @@
 import Aside from "@/components/Aside.vue";
 import TopHeader from "@/components/TopHeader.vue";
 
-
 import axios from "axios";
 export default {
   name: "AboutView",
@@ -24,26 +23,25 @@ export default {
   },
   data() {
     return {
+      bloglistdir: "",
       articleDetail: {
-        context: '',
-      }
+        context: "",
+      },
     };
   },
-  methods: {
-
-  },
+  methods: {},
 
   mounted() {
     this.githubrepo = localStorage.getItem("githubRepoHugoToken");
+    this.bloglistdir = localStorage.getItem("bloglistdir");
     axios
-        .get(
-          "https://raw.githubusercontent.com/lovezsh/vue-admin-hugo/main/README.md")
-        .then((response) => {
-          this.articleDetail.context = response.data;
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      .get("https://raw.githubusercontent.com/lovezsh/vue-admin-hugo/main/README.md")
+      .then((response) => {
+        this.articleDetail.context = response.data;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   },
 };
 </script>

@@ -1,11 +1,9 @@
 ## vue-admin-hugo
 
-GitHub：[https://github.com/lovezsh/vue-admin-hugo/](https://github.com/lovezsh/vue-admin-hugo/)  
-主页：[https://lovezsh.github.io/vue-admin-hugo/](https://lovezsh.github.io/vue-admin-hugo/)
+在线访问：[https://hugo-admin.vercel.app/](https://hugo-admin.vercel.app/)
 
 项目来源于我的突发奇想，并且基于热爱折腾的心理，利用GitHub本身提供的Api，将博客管理面板化。
 
-暂未推出在线服务。
 
 ## How Use?
 
@@ -18,7 +16,7 @@ yarn serve
 2. 获取以下权限：repo / user
 3. 生成 token
 
-以下操作在hugo源码仓库中进行
+以下操作在hugo源码仓库中进行：
 
 4. 在仓库的 `setting/actions`，滑到最下面，打开actions 的 pr 权限，不然actions自动部署会失败。
 5. 添加一个新的 actions  `.github/workflows/hugo.yml`。

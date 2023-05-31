@@ -45,7 +45,9 @@
 
         <el-row>
           <el-col :span="24">
-            <el-button v-if="this.id" type="primary" @click="publishArticle">更新文章</el-button>
+            <el-button v-if="this.id" type="primary" @click="publishArticle"
+              >更新文章</el-button
+            >
           </el-col>
         </el-row>
       </div>
@@ -67,6 +69,7 @@ export default {
   },
   data() {
     return {
+      bloglistdir: "",
       loading: false,
       ghpToken: "",
       githubrepo: "",
@@ -98,7 +101,9 @@ export default {
           .get(
             "https://raw.githubusercontent.com/" +
               this.githubrepo +
-              "/main/content/blog/" +
+              "/main/content/" +
+              this.bloglistdir +
+              "/" +
               this.id
           )
           .then((response) => {
@@ -191,7 +196,9 @@ tags:
         .put(
           "https://api.github.com/repos/" +
             this.githubrepo +
-            "/contents/content/blog/" +
+            "/contents/content/" +
+            this.bloglistdir +
+            "/" +
             this.id,
           {
             message: "提交于 " + this.currentDate,
@@ -225,6 +232,7 @@ tags:
   mounted() {
     this.ghpToken = localStorage.getItem("ghpToken");
     this.githubrepo = localStorage.getItem("githubRepoHugoToken");
+    this.bloglistdir = localStorage.getItem("bloglistdir");
 
     this.id = this.$route.query.name;
     this.detailsSha = this.$route.query.sha;

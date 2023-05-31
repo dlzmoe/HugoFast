@@ -42,6 +42,7 @@ export default {
       localStorage.removeItem('githubRepoHugoToken');
       localStorage.removeItem('BasicData');
       localStorage.removeItem('allData');
+      localStorage.removeItem('bloglistdir');
       this.$router.push('/login');
     }
   }

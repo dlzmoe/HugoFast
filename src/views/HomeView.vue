@@ -12,7 +12,11 @@
           </el-table-column>
           <el-table-column fixed="right" label="操作" width="200">
             <template slot-scope="scope">
-              <a :href="`/#/edit?name=${scope.row.name}&sha=${scope.row.sha}`" class="edit-btn">修改</a>
+              <a
+                :href="`/#/edit?name=${scope.row.name}&sha=${scope.row.sha}`"
+                class="edit-btn"
+                >修改</a
+              >
             </template>
           </el-table-column>
         </el-table>
@@ -45,6 +49,7 @@ export default {
   },
   data() {
     return {
+      bloglistdir: "",
       loading: true,
       githubrepo: "",
       tableData: [],
@@ -64,12 +69,14 @@ export default {
         this.loading = false;
         // 更新总数据量
         this.totalItems = allData.length;
-
       } else {
         // 没有缓存, 重新调用api数据存入缓存中
         axios
           .get(
-            "https://api.github.com/repos/" + this.githubrepo + "/contents/content/blog"
+            "https://api.github.com/repos/" +
+              this.githubrepo +
+              "/contents/content/" +
+              this.bloglistdir
           )
           .then((response) => {
             const allData = response.data.slice().reverse();
@@ -98,6 +105,7 @@ export default {
     },
   },
   mounted() {
+    this.bloglistdir = localStorage.getItem("bloglistdir");
     this.githubrepo = localStorage.getItem("githubRepoHugoToken");
     const BasicData = JSON.parse(localStorage.getItem("BasicData"));
 
