@@ -9,6 +9,11 @@ GitHub：[https://github.com/lovezsh/vue-admin-hugo/](https://github.com/lovezsh
 
 ## How Use?
 
+```
+yarn
+yarn serve
+```
+
 1. 前往 [https://github.com/settings/tokens/](https://github.com/settings/tokens/)
 2. 获取以下权限：repo / user
 3. 生成 token
@@ -38,8 +43,4 @@ GitHub：[https://github.com/lovezsh/vue-admin-hugo/](https://github.com/lovezsh
 
 ## 开发
 
-```
-yarn
-yarn serve
-yarn build
-```
+欢迎 pr。
