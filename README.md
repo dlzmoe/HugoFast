@@ -2,7 +2,7 @@
 
 在线访问：
 
-[https://hugo-admin.vercel.app/](https://hugo-admin.vercel.app/)
+[https://hugo-admin.vercel.app/](https://hugo-admin.vercel.app/)  
 [https://hugo-admin.zburu.com/](https://hugo-admin.zburu.com/)
 
 项目来源于我的突发奇想，并且基于热爱折腾的心理，利用GitHub本身提供的Api，将博客管理面板化。
