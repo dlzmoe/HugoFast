@@ -67,7 +67,6 @@ export default {
     setLogin() {
       localStorage.setItem("githubRepoHugoToken", this.githubrepo);
       localStorage.setItem("ghpToken", this.ghpToken);
-      this.$router.push("/");
 
       if (!this.githubrepo) {
         this.$notify.error({
@@ -81,6 +80,9 @@ export default {
         });
         return false;
       }
+
+      
+      this.$router.push("/");
     },
 
     open() {
