@@ -1,6 +1,6 @@
 ## vue-admin-hugo
 
-GitHub：[https://github.com/lovezsh/vue-admin-hugo/](https://github.com/lovezsh/vue-admin-hugo/)
+GitHub：[https://github.com/lovezsh/vue-admin-hugo/](https://github.com/lovezsh/vue-admin-hugo/)  
 主页：[https://lovezsh.github.io/vue-admin-hugo/](https://lovezsh.github.io/vue-admin-hugo/)
 
 项目来源于我的突发奇想，并且基于热爱折腾的心理，利用GitHub本身提供的Api，将博客管理面板化。
