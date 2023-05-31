@@ -7,6 +7,7 @@
         <el-row>
           <el-col :span="24">
             <a
+              v-if="this.id"
               style="color: #409eff"
               :href="`https://github.com/${this.githubrepo}/blob/main/content/blog/${this.id}`"
               target="_blank"
@@ -16,7 +17,9 @@
           </el-col>
         </el-row>
         <el-row :gutter="20">
-          <el-col :span="6">时间：<el-input v-model="result3.date" disabled></el-input></el-col>
+          <el-col :span="6"
+            >时间：<el-input v-model="result3.date" disabled></el-input
+          ></el-col>
           <el-col :span="6"
             >分类：<el-input v-model="result4.category" disabled></el-input
           ></el-col>
@@ -28,7 +31,9 @@
           ></el-col>
         </el-row>
         <el-row>
-          <el-col :span="24">标题：<el-input v-model="result2.title" disabled></el-input></el-col>
+          <el-col :span="24"
+            >标题：<el-input v-model="result2.title" disabled></el-input
+          ></el-col>
         </el-row>
         <el-row>
           <el-col :span="24">
@@ -40,7 +45,9 @@
 
         <el-row>
           <el-col :span="24">
-            <el-button v-if="this.id" type="primary" @click="publishArticle">发布文章</el-button>
+            <el-button v-if="this.id" type="primary" @click="publishArticle"
+              >发布文章</el-button
+            >
           </el-col>
         </el-row>
       </div>

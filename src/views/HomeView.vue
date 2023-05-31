@@ -12,7 +12,7 @@
           </el-table-column>
           <el-table-column fixed="right" label="操作" width="200">
             <template slot-scope="scope">
-              <a :href="`/edit?name=${scope.row.name}&sha=${scope.row.sha}`" class="edit-btn">修改</a>
+              <a :href="`/#/edit?name=${scope.row.name}&sha=${scope.row.sha}`" class="edit-btn">修改</a>
             </template>
           </el-table-column>
         </el-table>
