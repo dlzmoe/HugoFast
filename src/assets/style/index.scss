@@ -9,7 +9,7 @@ body {
 }
 
 p {
-  margin: 1em 0
+  margin: 1em 0;
 }
 
 .el-pagination {
@@ -25,12 +25,16 @@ p {
   padding: 20px;
   background: #fff;
   border-radius: 4px;
-  margin-top: 50px
+  margin-top: 50px;
 }
 
 .edit-btn {
   color: #333;
   text-decoration: underline;
+
+  &:nth-child(n + 2) {
+    margin-left: 10px;
+  }
 }
 
 .vue-simple-markdown {

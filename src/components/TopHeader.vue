@@ -36,6 +36,7 @@ export default {
     refreshCache() {
       localStorage.removeItem('BasicData');
       localStorage.removeItem('allData');
+      window.location.href = "/"
     },
     loginOut() {
       localStorage.removeItem('ghpToken');

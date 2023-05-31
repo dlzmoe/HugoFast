@@ -12,25 +12,16 @@
           </el-table-column>
           <el-table-column fixed="right" label="操作" width="200">
             <template slot-scope="scope">
-              <a
-                :href="`/#/edit?name=${scope.row.name}&sha=${scope.row.sha}`"
-                class="edit-btn"
-                >修改</a
-              >
+              <a :href="`/#/edit?name=${scope.row.name}&sha=${scope.row.sha}`" class="edit-btn">修改</a>
+              <a href="javascript:void(0)" class="edit-btn" @click="deletepost(scope.row.name, scope.row.sha)">删除文章</a>
             </template>
           </el-table-column>
         </el-table>
       </template>
 
-      <el-pagination
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page="currentPage"
-        :page-sizes="[10, 20, 30, 40]"
-        :page-size="pageSize"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="totalItems"
-      >
+      <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage"
+        :page-sizes="[10, 20, 30, 40]" :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper"
+        :total="totalItems">
       </el-pagination>
     </div>
   </div>
@@ -74,12 +65,25 @@ export default {
         axios
           .get(
             "https://api.github.com/repos/" +
-              this.githubrepo +
-              "/contents/content/" +
-              this.bloglistdir
+            this.githubrepo +
+            "/contents/content/" +
+            this.bloglistdir
           )
           .then((response) => {
-            const allData = response.data.slice().reverse();
+            const files = response.data;
+            const processedFiles = files.map(file => {
+              // 利用slice方法去掉.md字符
+              const processedName = file.name.slice(0, -3);
+
+              // 返回处理后的对象
+              return { name: processedName };
+            });
+
+            // 输出处理后的数组
+            console.log(processedFiles);
+
+
+            const allData = processedFiles.slice().reverse();
             localStorage.setItem("allData", JSON.stringify(allData));
 
             // 根据当前页码和每页显示的数量进行数据切片
@@ -103,6 +107,42 @@ export default {
       this.currentPage = newPage;
       this.loadData();
     },
+    async deletepost(name, sha) {
+      console.log(name, sha);
+      axios
+        .delete(
+          "https://api.github.com/repos/" +
+          this.githubrepo +
+          "/contents/content/" +
+          this.bloglistdir +
+          "/" +
+          name + ".md",
+          {
+            message: "删除文章 " + this.id,
+            sha: sha,
+          },
+          {
+            headers: {
+              Accept: "application/vnd.github.v3+json",
+              Authorization: "token " + this.ghpToken,
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response);
+          this.loading = false;
+          this.$notify({
+            title: "发布成功",
+            type: "success",
+          });
+          localStorage.removeItem("allData");
+          this.$router.push("/");
+        })
+        .catch((error) => {
+          console.error(error);
+          this.loading = false;
+        });
+    }
   },
   mounted() {
     this.bloglistdir = localStorage.getItem("bloglistdir");

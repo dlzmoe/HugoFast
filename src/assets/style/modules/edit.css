@@ -13,3 +13,6 @@
 .editwrap .el-tag {
   margin-left: 10px;
 }
+.editwrap .el-date-editor.el-input {
+  width: 100%;
+}

@@ -35,6 +35,9 @@ p {
   color: #333;
   text-decoration: underline;
 }
+.edit-btn:nth-child(n+2) {
+  margin-left: 10px;
+}
 
 .vue-simple-markdown {
   white-space: inherit !important;

@@ -32,7 +32,7 @@
   left: 0;
   width: 100%;
   padding-left: 320px;
-  z-index: 99999;
+  z-index: 9;
   background: #333;
   height: 50px;
   display: flex;
