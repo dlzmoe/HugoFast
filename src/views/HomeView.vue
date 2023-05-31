@@ -62,6 +62,7 @@ export default {
           .get("https://api.github.com/repos/" + this.githubrepo + "/contents/content/blog")
           .then((response) => {
             const allData = response.data.slice().reverse();
+            localStorage.setItem("tableData", JSON.stringify(allData));
 
             // 根据当前页码和每页显示的数量进行数据切片
             const startIndex = (this.currentPage - 1) * this.pageSize;
@@ -72,7 +73,6 @@ export default {
 
             // 更新总数据量
             this.totalItems = allData.length;
-            localStorage.setItem("tableData", JSON.stringify(this.tableData));
           })
           .catch((error) => {
             console.error(error);

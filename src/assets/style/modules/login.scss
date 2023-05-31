@@ -10,9 +10,17 @@
     max-width: 600px;
     margin: 0;
 
+    .el-input {
+      margin-bottom: 1em;
+    }
+
     .el-button {
-      margin-top: 1em;
       width: 100%;
     }
+  }
+
+  .loginhint {
+    color: #f00;
+    cursor: pointer;
   }
 }

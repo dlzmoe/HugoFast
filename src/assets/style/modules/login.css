@@ -10,7 +10,13 @@
   max-width: 600px;
   margin: 0;
 }
+.login .container .el-input {
+  margin-bottom: 1em;
+}
 .login .container .el-button {
-  margin-top: 1em;
   width: 100%;
+}
+.login .loginhint {
+  color: #f00;
+  cursor: pointer;
 }
