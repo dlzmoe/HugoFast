@@ -7,8 +7,9 @@
         <el-row>
           <el-col :span="24">
             <a v-if="this.id" style="color: #409eff"
-              :href="`https://github.com/${this.githubrepo}/blob/main/content/blog/${this.id}`" target="_blank">
-              https://github.com/{{ this.githubrepo }} /main/content/blog/{{ this.id }}
+              :href="`https://github.com/${this.githubrepo}/blob/main/content/${this.bloglistdir}/${this.id}.md`"
+              target="_blank">
+              https://github.com/{{ this.githubrepo }} /main/content/{{ this.bloglistdir }}/{{ this.id }}.md
             </a>
           </el-col>
         </el-row>
@@ -60,7 +61,8 @@ export default {
       detailsSha: "",
       id: "",
       text: "",
-
+      pattern1: /slug:\s*(.*?)\n/,
+      result1: { slug: "" },
       pattern2: /title:\s*(.*?)\n/,
       result2: { ttile: "" },
       pattern3: /date:\s*(.*?)\n/,
@@ -91,7 +93,7 @@ export default {
           )
           .then((response) => {
             this.text = response.data;
-            // console.log(this.text);
+            console.log(this.text);
             this.extractMetadata();
           })
           .catch((error) => {
@@ -114,12 +116,15 @@ export default {
       this.currentDate = `${year}-${month}-${day}`;
     },
     extractMetadata() {
-      if (this.id != null) {
 
+      if (this.id != null) {
+        console.log('77');
         const match2 = this.text.match(this.pattern2);
+        console.log(match2);
         if (match2) {
           const title = match2[1].trim();
           this.result2 = { title };
+          console.log(this.result2.title);
         }
         //
         const match3 = this.text.match(this.pattern3);

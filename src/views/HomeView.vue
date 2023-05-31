@@ -75,8 +75,8 @@ export default {
               // 利用slice方法去掉.md字符
               const processedName = file.name.slice(0, -3);
 
-              // 返回处理后的对象
-              return { name: processedName };
+              // 返回包含处理后的name和其他参数的对象
+              return { ...file, name: processedName };
             });
 
             // 输出处理后的数组
