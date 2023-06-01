@@ -3,9 +3,9 @@
     <div class="container">
       <h1>HugoFast</h1>
       <p>
-        未检测到您的登陆信息：
-        <el-tag type="warning" @click="dialogVisible = true">查看：如何获取GitHub Token?</el-tag>
+        未检测到您的登陆信息：<a-tag color="orange" @click="showModal">查看：如何获取GitHub Token?</a-tag>
       </p>
+
       <a-input v-model="HugoFastghpToken" placeholder="请输入Github Token，在setting中生成" />
       <a-input v-model="githubrepo" placeholder="请输入Github仓库名，如: lovezsh/hugo-test" @blur="repoflie" />
 
@@ -23,17 +23,14 @@
       <a href="https://github.com/lovezsh/HugoFast" target="_blank">Github</a>
     </div>
 
-    <el-dialog title="如何获取GitHub Token?" :visible.sync="dialogVisible" width="30%">
+    <a-modal title="如何获取GitHub Token?" :visible="visible" :confirm-loading="confirmLoading" @ok="handleOk" @cancel="handleCancel">
       <p>
         1. 前往
-        <el-link href="https://github.com/settings/tokens/" target="_blank">https://github.com/settings/tokens/</el-link>
+        <a href="https://github.com/settings/tokens/" target="_blank">https://github.com/settings/tokens/</a>
       </p>
       <p>2. 获取以下权限：repo / user</p>
       <p>3. 生成 token</p>
-      <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-      </span>
-    </el-dialog>
+    </a-modal>
   </div>
 </template>
 
@@ -45,14 +42,25 @@ export default {
     return {
       HugoFastghpToken: "",
       githubrepo: "",
-      dialogVisible: false,
       restaurants: [],
       state1: "",
       hide1: false,
       hide2: false,
+
+      visible: false,
+      confirmLoading: false,
     };
   },
   methods: {
+    showModal() {
+      this.visible = true;
+    },
+    handleOk(e) {
+      this.visible = false;
+    },
+    handleCancel(e){
+      this.visible = false;
+    },
     setLogin() {
       localStorage.setItem("HugoFastRepoName", this.githubrepo);
       localStorage.setItem("HugoFastghpToken", this.HugoFastghpToken);

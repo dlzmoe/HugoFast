@@ -11,6 +11,7 @@
     margin: 0;
     box-shadow: 1px 2px 10px rgba(0, 0, 0, .1);
     border-radius: 4px;
+    min-height: inherit;
 
     .ant-input {
       margin-bottom: 1em;
@@ -27,7 +28,7 @@
     cursor: pointer;
   }
 
-  .el-tag {
+  .ant-tag {
     cursor: pointer;
     font-size: 14px;
   }
