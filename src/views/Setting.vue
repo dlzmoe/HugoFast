@@ -5,9 +5,6 @@
       <TopHeader />
       <div v-loading="loading">
         <div class="item">
-          <a-alert message="正在开发中，请谨慎使用。" banner style="width:100%" />
-        </div>
-        <div class="item">
           <label>域名: </label>
           <a-input v-model="setting.domain" placeholder="博客域名 https://"></a-input>
         </div>
