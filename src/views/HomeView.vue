@@ -79,10 +79,6 @@ export default {
               return { ...file, name: processedName };
             });
 
-            // 输出处理后的数组
-            console.log(processedFiles);
-
-
             const allData = processedFiles.slice().reverse();
             localStorage.setItem("allData", JSON.stringify(allData));
 

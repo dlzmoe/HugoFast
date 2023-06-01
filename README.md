@@ -7,7 +7,7 @@ Github: [https://github.com/lovezsh/HugoFast](https://github.com/lovezsh/HugoFas
 在线访问：
 
 - [https://hugoadmin.netlify.app/](https://hugoadmin.netlify.app/) (长期维护)
-- [https://hugo-admin.zburu.com/](https://hugo-admin.zburu.com/) (不稳定后期会删除)
+- [https://hugo-admin.zburu.com/](https://hugo-admin.zburu.com/) (不稳定)
 
 ## 介绍
 

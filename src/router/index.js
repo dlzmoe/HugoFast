@@ -26,6 +26,13 @@ const routes = [
     }
   },
   {
+    path: '/publish',
+    name: 'publish',
+    component: function () {
+      return import('../views/PublishView.vue')
+    }
+  },
+  {
     path: '/about',
     name: 'about',
     component: function () {
