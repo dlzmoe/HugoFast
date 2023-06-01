@@ -16,15 +16,21 @@
     a {
       display: inline-flex;
       align-items: center;
-      width: 100%;
-      height: 50px;
+      max-width: 100%;
+      height: 40px;
       color: #f3f3f3;
       text-decoration: none;
       padding: 0 20px;
+      margin: 4px;
 
       &.router-link-exact-active {
         background: #eeeeee;
         color: #000;
+        border-radius: 5px;
+      }
+
+      span {
+        padding-left: 10px;
       }
     }
   }

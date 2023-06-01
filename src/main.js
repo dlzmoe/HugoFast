@@ -13,6 +13,7 @@ import VueSimpleMarkdown from 'vue-simple-markdown'
 // You need a specific loader for CSS files like https://github.com/webpack/css-loader
 import 'vue-simple-markdown/dist/vue-simple-markdown.css'
 Vue.use(VueSimpleMarkdown)
+import 'github-markdown-css';
 
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';

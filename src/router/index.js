@@ -19,6 +19,13 @@ const routes = [
     }
   },
   {
+    path: '/list',
+    name: 'list',
+    component: function () {
+      return import('../views/ListView.vue')
+    }
+  },
+  {
     path: '/edit',
     name: 'edit',
     component: function () {
@@ -55,7 +62,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const pathArr = ['/', '/about']
+  const pathArr = ['/', '/list', '/edit', 'publish', '/about']
   if (pathArr.indexOf(to.path) !== -1) {
     const token = localStorage.getItem('HugoFastghpToken')
     if (token) {

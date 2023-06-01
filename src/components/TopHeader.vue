@@ -58,7 +58,7 @@ export default {
     refreshCache() {
       localStorage.removeItem("HugoFastBasicData");
       localStorage.removeItem("HugoFastallData");
-      window.location.href = "/";
+      window.location.href = "/#/list";
     },
     goSetting(){
       window.location.href = "/#/setting";
