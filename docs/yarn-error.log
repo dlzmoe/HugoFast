@@ -1,0 +1,36 @@
+Arguments: 
+  D:\nvmnode\node.exe C:\Users\shuxh\.node\corepack\yarn\1.22.15\bin\yarn.js init
+
+PATH: 
+  C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64_win\compiler;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;D:\Bandizip\;D:\Git\cmd;C:\Program Files\Pandoc\;C:\bin;D:\微信web开发者工具\dll;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;F:\;D:\bvsshclinent;C:\Program Files\dotnet\;D:\svn\bin;%NVM_HOME%;%NVM_SYMLINK%;C:\Users\shuxh\AppData\Local\Programs\Python\Python311\Scripts\;C:\Users\shuxh\AppData\Local\Programs\Python\Python311\;C:\Users\shuxh\AppData\Local\pnpm;C:\Users\shuxh\AppData\Local\Microsoft\WindowsApps;C:\Users\shuxh\go\bin;c:\go\bin;c:\hugo\bin;D:\flutter\bin;C:\Users\shuxh\.cargo\bin;C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.34.31933\bin\Hostx64\x64;D:\Microsoft VS Code\bin;C:\Users\shuxh\AppData\Roaming\npm;D:\nvm\nvm;D:\nvmnode
+
+Yarn version: 
+  1.22.15
+
+Node version: 
+  14.16.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: canceled
+      at Interface.<anonymous> (C:\Users\shuxh\.node\corepack\yarn\1.22.15\lib\cli.js:137145:13)
+      at Interface.emit (events.js:315:20)
+      at Interface._ttyWrite (readline.js:875:16)
+      at ReadStream.onkeypress (readline.js:213:10)
+      at ReadStream.emit (events.js:315:20)
+      at emitKeys (internal/readline/utils.js:345:14)
+      at emitKeys.next (<anonymous>)
+      at ReadStream.onData (readline.js:1144:36)
+      at ReadStream.emit (events.js:315:20)
+      at addChunk (internal/streams/readable.js:309:12)
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

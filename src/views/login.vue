@@ -14,7 +14,7 @@
       ></el-input>
       <el-input
         v-model="githubrepo"
-        placeholder="请输入Github仓库名，如: lovezsh/hugo-blog"
+        placeholder="请输入Github仓库名，如: lovezsh/hugo-test"
         @blur="repoflie"
       ></el-input>
       <el-autocomplete

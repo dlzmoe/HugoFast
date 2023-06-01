@@ -1,0 +1,16 @@
+{
+  "name": "hugofast-docs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "author": "lovezsh",
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "serve": "vitepress serve docs"
+  },
+  "devDependencies": {
+    "vitepress": "^1.0.0-alpha.65",
+    "vitepress-plugin-search": "^1.0.4-alpha.20"
+  }
+}
