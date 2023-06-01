@@ -1,7 +1,8 @@
 <template>
   <div class="login">
     <div class="container">
-      <h1>HugoFast</h1>
+      <img src="@/assets/logo.png" alt="">
+      <!-- <h1>HugoFast</h1> -->
       <p>
         未检测到您的登陆信息：<a-tag color="orange" @click="showModal">查看：如何获取GitHub Token?</a-tag>
       </p>
@@ -16,7 +17,7 @@
         </a-select-option>
       </a-select>
 
-      <a-button type="primary" @click="setLogin" v-if="hide2">确认</a-button>
+      <a-button type="primary" @click="setLogin" v-if="hide2">登陆</a-button>
     </div>
 
     <div class="fixed">
