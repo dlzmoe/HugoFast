@@ -32,7 +32,7 @@ export default {
   methods: {},
 
   mounted() {
-    this.githubrepo = localStorage.getItem("githubRepoHugoToken");
+    this.githubrepo = localStorage.getItem("HugoFastRepoName");
     this.bloglistdir = localStorage.getItem("bloglistdir");
     axios
       .get("https://raw.githubusercontent.com/lovezsh/vue-admin-hugo/main/README.md")

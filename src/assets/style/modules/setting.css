@@ -1,0 +1,9 @@
+.setting .item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+.setting .item label {
+  white-space: nowrap;
+  width: 80px;
+}

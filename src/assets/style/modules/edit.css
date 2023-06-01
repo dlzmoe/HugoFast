@@ -16,3 +16,11 @@
 .editwrap .el-date-editor.el-input {
   width: 100%;
 }
+.editwrap .edit-headicon {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.editwrap .edit-headicon a {
+  margin-right: 10px;
+}

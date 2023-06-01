@@ -6,10 +6,15 @@
       <div class="editwrap" v-loading="loading">
         <el-row>
           <el-col :span="24">
-            <a v-if="this.id" style="color: #409eff"
+            <a
+              v-if="this.id"
+              style="color: #409eff"
               :href="`https://github.com/${this.githubrepo}/blob/main/content/${this.bloglistdir}/${this.id}.md`"
-              target="_blank">
-              https://github.com/{{ this.githubrepo }} /main/content/{{ this.bloglistdir }}/{{ this.id }}.md
+              target="_blank"
+            >
+              https://github.com/{{ this.githubrepo }} /main/content/{{
+                this.bloglistdir
+              }}/{{ this.id }}.md
             </a>
           </el-col>
         </el-row>
@@ -17,9 +22,26 @@
           <el-col :span="24">标题：<el-input v-model="result2.title"></el-input></el-col>
         </el-row>
         <el-row :gutter="20">
-          <el-col :span="8">时间:<el-input v-model="result3.date" placeholder="格式如：2023-05-31"></el-input></el-col>
-          <el-col :span="8">分类: <el-input v-model="result4.category" placeholder="暂时只支持填写一个分类"></el-input></el-col>
-          <el-col :span="8">标签: <el-input v-model="result5.tags" placeholder="暂时只支持填写一个标签"></el-input></el-col>
+          <el-col :span="8"
+            >时间:<el-input
+              v-model="result3.date"
+              placeholder="格式如：2023-05-31"
+            ></el-input
+          ></el-col>
+          <el-col :span="8"
+            >分类:
+            <el-input
+              v-model="result4.category"
+              placeholder="暂时只支持填写一个分类"
+            ></el-input
+          ></el-col>
+          <el-col :span="8"
+            >标签:
+            <el-input
+              v-model="result5.tags"
+              placeholder="暂时只支持填写一个标签"
+            ></el-input
+          ></el-col>
         </el-row>
         <el-row>
           <el-col :span="24">
@@ -46,7 +68,7 @@ import TopHeader from "@/components/TopHeader.vue";
 let Base64 = require("js-base64").Base64;
 import axios from "axios";
 export default {
-  name: "EditView",
+  name: "PublishView",
   components: {
     Aside,
     TopHeader,
@@ -55,7 +77,7 @@ export default {
     return {
       bloglistdir: "",
       loading: false,
-      ghpToken: "",
+      HugoFastghpToken: "",
       githubrepo: "",
       detailsSha: "",
       id: "",
@@ -78,7 +100,13 @@ export default {
     };
   },
   methods: {
- 
+    getDate() {
+      const date = new Date();
+      const year = date.getFullYear();
+      const month = date.getMonth() + 1;
+      const day = date.getDate();
+      this.currentDate = `${year}-${month}-${day}`;
+    },
     autogetDate() {
       const date = new Date();
       const year = date.getFullYear();
@@ -86,17 +114,25 @@ export default {
       const day = date.getDate();
       this.result3.date = `${year}-${month}-${day}`;
     },
-   
+
     async publishNews() {
       // 获取一次提交时间
       const str =
         `---
-title: ` + this.result2.title + `
-date: ` + this.result3.date + `
+title: ` +
+        this.result2.title +
+        `
+date: ` +
+        this.result3.date +
+        `
 categories:
-  - ` + this.result4.category + `
+  - ` +
+        this.result4.category +
+        `
 tags:
-  - ` + this.result5.tags + `
+  - ` +
+        this.result5.tags +
+        `
 ---
 
 ` +
@@ -105,21 +141,21 @@ tags:
       // 对字符串进行编码
       this.base64Str = Base64.encode(str);
 
-      if (this.result2.title == '' || this.result2.title == undefined) {
+      if (this.result2.title == "" || this.result2.title == undefined) {
         this.$notify({
           title: "未填写标题",
           type: "error",
         });
         return false;
       }
-      if (this.result3.date == '' || this.result3.date == undefined) {
+      if (this.result3.date == "" || this.result3.date == undefined) {
         this.$notify({
           title: "未填写日期",
           type: "error",
         });
         return false;
       }
-      if (this.result4.category == '' || this.result4.category == undefined) {
+      if (this.result4.category == "" || this.result4.category == undefined) {
         this.$notify({
           title: "未填写分类",
           type: "error",
@@ -127,7 +163,7 @@ tags:
         return false;
       }
 
-      if (this.content == '' || this.content == undefined) {
+      if (this.content == "" || this.content == undefined) {
         this.$notify({
           title: "请输入文章内容",
           type: "error",
@@ -140,11 +176,14 @@ tags:
       axios
         .put(
           "https://api.github.com/repos/" +
-          this.githubrepo +
-          "/contents/content/" +
-          this.bloglistdir +
-          "/" +
-          this.result3.date + "-" + this.result2.title + ".md",
+            this.githubrepo +
+            "/contents/content/" +
+            this.bloglistdir +
+            "/" +
+            this.result3.date +
+            "-" +
+            this.result2.title +
+            ".md",
           {
             message: "提交于 " + this.currentDate,
             content: this.base64Str,
@@ -152,7 +191,7 @@ tags:
           {
             headers: {
               Accept: "application/vnd.github.v3+json",
-              Authorization: "token " + this.ghpToken,
+              Authorization: "token " + this.HugoFastghpToken,
             },
           }
         )
@@ -163,20 +202,19 @@ tags:
             title: "发布成功",
             type: "success",
           });
-          localStorage.removeItem("allData");
+          localStorage.removeItem("HugoFastallData");
           this.$router.push("/");
         })
         .catch((error) => {
           console.error(error);
           this.loading = false;
         });
-
     },
   },
   computed: {},
   mounted() {
-    this.ghpToken = localStorage.getItem("ghpToken");
-    this.githubrepo = localStorage.getItem("githubRepoHugoToken");
+    this.HugoFastghpToken = localStorage.getItem("HugoFastghpToken");
+    this.githubrepo = localStorage.getItem("HugoFastRepoName");
     this.bloglistdir = localStorage.getItem("bloglistdir");
 
     this.autogetDate();

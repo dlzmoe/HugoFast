@@ -33,6 +33,13 @@ const routes = [
     }
   },
   {
+    path: '/setting',
+    name: 'setting',
+    component: function () {
+      return import('../views/Setting.vue')
+    }
+  },
+  {
     path: '/about',
     name: 'about',
     component: function () {
@@ -50,7 +57,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   const pathArr = ['/', '/about']
   if (pathArr.indexOf(to.path) !== -1) {
-    const token = localStorage.getItem('ghpToken')
+    const token = localStorage.getItem('HugoFastghpToken')
     if (token) {
       next()
     } else {

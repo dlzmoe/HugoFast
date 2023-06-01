@@ -41,3 +41,11 @@
   color: #fff;
   padding-right: 20px;
 }
+.header .settingAuthor {
+  margin-right: 20px;
+  cursor: pointer;
+}
+.header .settingAuthor .el-avatar {
+  width: 40px !important;
+  height: 40px !important;
+}

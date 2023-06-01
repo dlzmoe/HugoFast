@@ -9,7 +9,7 @@
         >
       </p>
       <el-input
-        v-model="ghpToken"
+        v-model="HugoFastghpToken"
         placeholder="请输入Github Token，在setting中生成"
       ></el-input>
       <el-input
@@ -55,7 +55,7 @@ export default {
   name: "login",
   data() {
     return {
-      ghpToken: "",
+      HugoFastghpToken: "",
       githubrepo: "",
       dialogVisible: false,
       restaurants: [],
@@ -66,8 +66,8 @@ export default {
   },
   methods: {
     setLogin() {
-      localStorage.setItem("githubRepoHugoToken", this.githubrepo);
-      localStorage.setItem("ghpToken", this.ghpToken);
+      localStorage.setItem("HugoFastRepoName", this.githubrepo);
+      localStorage.setItem("HugoFastghpToken", this.HugoFastghpToken);
 
       if (!this.githubrepo) {
         this.$notify.error({
@@ -75,7 +75,7 @@ export default {
         });
         return false;
       }
-      if (!this.ghpToken) {
+      if (!this.HugoFastghpToken) {
         this.$notify.error({
           title: "未填写正确的GitHub Token！",
         });

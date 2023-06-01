@@ -1,0 +1,12 @@
+.setting {
+  .item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+
+    label {
+      white-space: nowrap;
+      width: 80px;
+    }
+  }
+}

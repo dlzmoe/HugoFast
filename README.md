@@ -29,7 +29,7 @@ Github: [https://github.com/lovezsh/HugoFast](https://github.com/lovezsh/HugoFas
 - [x] 修改旧文章的标题，时间，标签，分类等元数据
 - [x] 发布新文章
 - [ ] 删除文章功能
-- [ ] 自定义配置，如 博客名称, 域名, 昵称 等
+- [x] 开发设置功能
 
 ## 开发
 

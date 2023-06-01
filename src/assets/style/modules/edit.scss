@@ -21,4 +21,14 @@
   .el-date-editor.el-input {
     width: 100%;
   }
+
+  .edit-headicon {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    a {
+      margin-right: 10px;
+    }
+  }
 }

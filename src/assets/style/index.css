@@ -1,6 +1,7 @@
 @import url(./modules/aside.css);
 @import url(./modules/login.css);
 @import url(./modules/edit.css);
+@import url(./modules/setting.css);
 * {
   margin: 0;
   padding: 0;

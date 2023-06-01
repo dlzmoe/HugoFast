@@ -43,4 +43,14 @@
   justify-content: space-between;
   color: #fff;
   padding-right: 20px;
+
+  .settingAuthor {
+    margin-right: 20px;
+    cursor: pointer;
+
+    .el-avatar {
+      width: 40px !important;
+      height: 40px !important;
+    }
+  }
 }
