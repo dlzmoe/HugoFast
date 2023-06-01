@@ -1,21 +1,17 @@
 .editwrap {
-  .el-row {
+  .ant-row {
     margin-bottom: 1em;
 
-    .el-input {
+    .ant-input {
       margin-top: 5px;
     }
   }
 
-  .el-textarea__inner{
-    height: 500px;
+  .content{
+    height: 500px !important;
     background: #222;
     color: #f3f3f3;
     font-size: 16px;
-  }
-
-  .el-tag {
-    margin-left: 10px;
   }
 
   .el-date-editor.el-input {

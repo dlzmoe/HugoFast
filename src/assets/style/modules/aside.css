@@ -2,8 +2,8 @@
   position: fixed;
   left: 0;
   top: 0;
-  background: #333;
-  padding-top: 10px;
+  background: #001529;
+  padding-top: 60px;
   width: 300px;
   height: 100vh;
   z-index: 999999;
@@ -23,7 +23,8 @@
   padding: 0 20px;
 }
 .aside nav a.router-link-exact-active {
-  background: #000;
+  background: #eeeeee;
+  color: #000;
 }
 
 .header {
@@ -33,16 +34,16 @@
   width: 100%;
   padding-left: 320px;
   z-index: 9;
-  background: #333;
-  height: 50px;
+  background: #001529;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: #fff;
   padding-right: 20px;
+  font-size: 18px;
 }
 .header .settingAuthor {
-  margin-right: 20px;
   cursor: pointer;
 }
 .header .settingAuthor .el-avatar {

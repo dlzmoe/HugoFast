@@ -4,41 +4,29 @@
       <h1>HugoFast</h1>
       <p>
         未检测到您的登陆信息：
-        <el-tag type="warning" @click="dialogVisible = true"
-          >查看：如何获取GitHub Token?</el-tag
-        >
+        <el-tag type="warning" @click="dialogVisible = true">查看：如何获取GitHub Token?</el-tag>
       </p>
-      <el-input
-        v-model="HugoFastghpToken"
-        placeholder="请输入Github Token，在setting中生成"
-      ></el-input>
-      <el-input
-        v-model="githubrepo"
-        placeholder="请输入Github仓库名，如: lovezsh/hugo-test"
-        @blur="repoflie"
-      ></el-input>
-      <el-autocomplete
-        class="inline-input"
-        v-model="state1"
-        :fetch-suggestions="querySearch"
-        placeholder="选择目录"
-        @select="handleSelect"
-        @input="blogdir"
-        v-if="hide1"
-      ></el-autocomplete>
-      <el-button type="primary" @click="setLogin" v-if="hide2">确认</el-button>
+      <a-input v-model="HugoFastghpToken" placeholder="请输入Github Token，在setting中生成" />
+      <a-input v-model="githubrepo" placeholder="请输入Github仓库名，如: lovezsh/hugo-test" @blur="repoflie" />
+
+      <a-select show-search v-model="state1" placeholder="选择目录" option-filter-prop="children" style="width:100%"
+        :filter-option="filterOption" v-if="hide1" @change="blogdir">
+        <a-select-option v-for="(item, index) in restaurants" :key="index" :value="item.value">
+          {{ item.value }}
+        </a-select-option>
+      </a-select>
+
+      <a-button type="primary" @click="setLogin" v-if="hide2">确认</a-button>
     </div>
 
     <div class="fixed">
-      <el-link href="https://github.com/lovezsh/HugoFast" target="_blank">Github</el-link>
+      <a href="https://github.com/lovezsh/HugoFast" target="_blank">Github</a>
     </div>
 
     <el-dialog title="如何获取GitHub Token?" :visible.sync="dialogVisible" width="30%">
       <p>
         1. 前往
-        <el-link href="https://github.com/settings/tokens/" target="_blank"
-          >https://github.com/settings/tokens/</el-link
-        >
+        <el-link href="https://github.com/settings/tokens/" target="_blank">https://github.com/settings/tokens/</el-link>
       </p>
       <p>2. 获取以下权限：repo / user</p>
       <p>3. 生成 token</p>
@@ -70,32 +58,16 @@ export default {
       localStorage.setItem("HugoFastghpToken", this.HugoFastghpToken);
 
       if (!this.githubrepo) {
-        this.$notify.error({
-          title: "未填写仓库名",
-        });
+        this.$message.error('未填写仓库名');
         return false;
       }
       if (!this.HugoFastghpToken) {
-        this.$notify.error({
-          title: "未填写正确的GitHub Token！",
-        });
+        this.$message.error('未填写正确的GitHub Token！');
         return false;
       }
 
-      
-      this.$router.push("/");
-    },
 
-    open() {
-      this.$alert("这是一段内容", "获取github token", {
-        confirmButtonText: "确定",
-        callback: (action) => {
-          this.$message({
-            type: "info",
-            message: `action: ${action}`,
-          });
-        },
-      });
+      this.$router.push("/");
     },
     repoflie() {
       if (this.githubrepo == "") {
@@ -112,31 +84,33 @@ export default {
             };
           });
           this.restaurants = newArray;
+          console.log(this.restaurants);
           this.hide1 = true;
         })
         .catch((error) => {
           console.error(error);
         });
     },
-    querySearch(queryString, cb) {
-      var restaurants = this.restaurants;
-      var results = queryString
-        ? restaurants.filter(this.createFilter(queryString))
-        : restaurants;
-      // 调用 callback 返回建议列表的数据
-      cb(results);
-    },
-    createFilter(queryString) {
-      return (restaurant) => {
-        return restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0;
-      };
-    },
-    handleSelect(item) {},
     blogdir() {
       this.hide2 = true;
       localStorage.setItem("bloglistdir", this.state1);
     },
+
+    handleChange(value) {
+      console.log(`selected ${value}`);
+    },
+    handleBlur() {
+      console.log('blur');
+    },
+    handleFocus() {
+      console.log('focus');
+    },
+    filterOption(input, option) {
+      return (
+        option.componentOptions.children[0].text.toLowerCase().indexOf(input.toLowerCase()) >= 0
+      );
+    },
   },
-  mounted() {},
+  mounted() { },
 };
 </script>
