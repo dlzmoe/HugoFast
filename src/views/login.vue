@@ -21,9 +21,12 @@
 
     <div class="fixed">
       <a href="https://github.com/lovezsh/HugoFast" target="_blank">Github</a>
+       | 
+      <a href="https://hugofast-docs.netlify.app/" target="_blank">使用文档</a>
     </div>
 
     <a-modal title="如何获取GitHub Token?" :visible="visible" :confirm-loading="confirmLoading" @ok="handleOk" @cancel="handleCancel">
+      <p>使用文档：<a href="https://hugofast-docs.netlify.app/" target="_blank">https://hugofast-docs.netlify.app/</a></p>
       <p>
         1. 前往
         <a href="https://github.com/settings/tokens/" target="_blank">https://github.com/settings/tokens/</a>
