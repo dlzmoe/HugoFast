@@ -40,3 +40,7 @@ Github: [https://github.com/lovezsh/HugoFast](https://github.com/lovezsh/HugoFas
 <a href="https://github.com/lovezsh/hugofast/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=lovezsh/hugofast" />
 </a>
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=lovezsh/HugoFast&type=Date)](https://star-history.com/#lovezsh/HugoFast&Date)
