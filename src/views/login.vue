@@ -18,6 +18,7 @@
       </a-select>
 
       <a-button type="primary" @click="setLogin" v-if="hide2">登陆</a-button>
+      <a-alert v-if="showLoginErrorMessage === true" :message="loginErrorMessage" type="warning" closable @close="showLoginErrorMessage = false" />
     </div>
 
     <div class="fixed">
@@ -48,6 +49,8 @@ export default {
       githubrepo: "",
       restaurants: [],
       state1: "",
+      loginErrorMessage: "",
+      showLoginErrorMessage: false,
       hide1: false,
       hide2: false,
 
@@ -66,23 +69,33 @@ export default {
       this.visible = false;
     },
     setLogin() {
-      localStorage.setItem("HugoFastRepoName", this.githubrepo);
-      localStorage.setItem("HugoFastghpToken", this.HugoFastghpToken);
-
-      if (!this.githubrepo) {
-        this.$message.error('未填写仓库名');
-        return false;
-      }
       if (!this.HugoFastghpToken) {
         this.$message.error('未填写正确的GitHub Token！');
         return false;
       }
-
-
-      this.$router.push("/");
+      validateGitHubToken(this.HugoFastghpToken)
+        .then((isValidToken) => {
+          if (!this.githubrepo) {
+            this.$message.error('未填写仓库名');
+            this.showLoginErrorMessage = true
+            return false;
+          }
+          if (isValidToken) {
+            localStorage.setItem("HugoFastRepoName", this.githubrepo);
+            localStorage.setItem("HugoFastghpToken", this.HugoFastghpToken);
+            this.showLoginErrorMessage = false
+            this.$router.push("/");
+          } else {
+            this.loginErrorMessage = 'GitHub Token 无效，请检查Token是否正确'
+            this.showLoginErrorMessage = true
+          }
+        })
     },
+    /** Log in to check */
     repoflie() {
       if (this.githubrepo == "") {
+        this.loginErrorMessage = "请填写仓库名"
+        this.showLoginErrorMessage = true
         return false;
       }
       axios
@@ -98,8 +111,11 @@ export default {
           this.restaurants = newArray;
           console.log(this.restaurants);
           this.hide1 = true;
+          this.showLoginErrorMessage = false
         })
         .catch((error) => {
+          this.loginErrorMessage = '仓库地址无效，请检查仓库地址'
+          this.showLoginErrorMessage = true
           console.error(error);
         });
     },
@@ -125,4 +141,13 @@ export default {
   },
   mounted() { },
 };
+
+/** GitHub Token validation */
+const validateGitHubToken = (token) => {
+  const headers = { Authorization: `token ${token}` }
+  return axios
+    .get("https://api.github.com/user", { headers })
+    .then((response) => true)
+    .catch((error) => false);
+}
 </script>
