@@ -121,7 +121,7 @@ jobs:
 
 填写完成后，会自动获取文章目录，选择后点击确认。
 
-![image](https://imgbed.netlify.app/images/image.2hssbo57wuw0.webp)
+![image](https://imgbed.netlify.app/images/image.1brs1sdgy9g.png)
 
 进入网站就可以正常使用功能了，如修改文章，发布新文章，其他功能还在开发中。
 
