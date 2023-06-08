@@ -2,16 +2,15 @@
   <div class="header">
     <div class="logo">Hugo 文章后台管理</div>
     <div class="menu">
-  
 
       <template>
         <a-dropdown :trigger="['click']">
           <a class="ant-dropdown-link" @click="e => e.preventDefault()">
             <div class="settingAuthor">
-              <el-avatar :size="50" :src="this.setting.authorimg"></el-avatar>
+              <el-avatar :size="50" :src="this.HugoFast_ME.avatar_url"></el-avatar>
             </div>
           </a>
-          <a-menu slot="overlay">
+          <a-menu slot="overlay" style="min-width:100px">
             <a-menu-item key="0">
               <span>{{ this.setting.name }}</span>
             </a-menu-item>
@@ -27,7 +26,6 @@
           </a-menu>
         </a-dropdown>
       </template>
-
 
     </div>
 
@@ -47,6 +45,7 @@ export default {
   data() {
     return {
       dialogVisible: false,
+      HugoFast_ME: '',
       setting: {
         domain: "",
         name: "",
@@ -60,7 +59,7 @@ export default {
       localStorage.removeItem("HugoFastallData");
       window.location.href = "/#/list";
     },
-    goSetting(){
+    goSetting() {
       window.location.href = "/#/setting";
     },
     loginOut() {
@@ -73,6 +72,9 @@ export default {
     if (setting != "") {
       this.setting = JSON.parse(localStorage.getItem("HugoFast_Setting"));
     }
+
+    // 获取个人设置
+    this.HugoFast_ME = JSON.parse(localStorage.getItem("HugoFast_ME"));
   },
 };
 </script>

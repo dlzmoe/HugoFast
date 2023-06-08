@@ -13,10 +13,6 @@
           <a-input v-model="setting.name" placeholder="仅在管理后台生效"></a-input>
         </div>
         <div class="item">
-          <label>头像: </label>
-          <a-input v-model="setting.authorimg" placeholder="https://img.zburu.com/author.png"></a-input>
-        </div>
-        <div class="item">
           <a-button type="primary" @click="saveSetting">保存设置</a-button>
         </div>
       </div>
@@ -46,7 +42,6 @@ export default {
       setting: {
         domain: "",
         name: "",
-        authorimg: "https://img.zburu.com/author.png",
       },
       ConfigSha: '',
     };

@@ -52,6 +52,24 @@ p {
   white-space: inherit !important;
 }
 
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  float: right;
+
+  & > * {
+    margin-right: 30px;
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+.ant-card-head-title {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
 @import url(./modules/aside.css);
 @import url(./modules/login.css);
 @import url(./modules/edit.css);

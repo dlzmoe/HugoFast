@@ -24,9 +24,9 @@
   margin: 4px;
 }
 .aside nav a.router-link-exact-active {
-  background: #eeeeee;
-  color: #000;
-  border-radius: 5px;
+  background: #1890ff;
+  color: #fff;
+  border-radius: 3px;
 }
 .aside nav a span {
   padding-left: 10px;

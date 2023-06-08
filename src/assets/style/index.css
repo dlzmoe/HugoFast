@@ -56,3 +56,20 @@ p {
 .vue-simple-markdown {
   white-space: inherit !important;
 }
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  float: right;
+}
+.flex > * {
+  margin-right: 30px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.ant-card-head-title {
+  text-transform: uppercase;
+  font-weight: bold;
+}

@@ -12,32 +12,16 @@
           </el-table-column>
           <el-table-column fixed="right" label="操作" width="200">
             <template slot-scope="scope">
-              <a
-                :href="`/#/edit?name=${scope.row.name}&sha=${scope.row.sha}`"
-                class="edit-btn"
-                >修改</a
-              >
-              <a
-                href="javascript:void(0)"
-                class="edit-btn"
-                @click="deletepost(scope.row.name, scope.row.sha)"
-                >删除文章</a
-              >
+              <a :href="`/#/edit?name=${scope.row.name}&sha=${scope.row.sha}`" class="edit-btn">修改</a>
+              <a href="javascript:void(0)" class="edit-btn" @click="deletepost(scope.row.name, scope.row.sha)">删除文章</a>
             </template>
           </el-table-column>
         </el-table>
       </template>
 
-      <el-pagination
-        background
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page="currentPage"
-        :page-sizes="[10, 20, 50, 100]"
-        :page-size="pageSize"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="totalItems"
-      >
+      <el-pagination background @size-change="handleSizeChange" @current-change="handleCurrentChange"
+        :current-page="currentPage" :page-sizes="[10, 20, 50, 100]" :page-size="pageSize"
+        layout="total, sizes, prev, pager, next, jumper" :total="totalItems">
       </el-pagination>
     </div>
   </div>
@@ -83,9 +67,9 @@ export default {
         axios
           .get(
             "https://api.github.com/repos/" +
-              this.githubrepo +
-              "/contents/" +
-              this.bloglistdir
+            this.githubrepo +
+            "/contents/" +
+            this.bloglistdir
           )
           .then((response) => {
             const files = response.data;
@@ -121,108 +105,59 @@ export default {
       this.currentPage = newPage;
       this.loadData();
     },
+    // 删除文章
     async deletepost(name, sha) {
-      console.log(name, sha);
-      axios
-        .delete(
-          "https://api.github.com/repos/" +
-            this.githubrepo +
-            "/contents/" +
-            this.bloglistdir +
-            "/" +
-            name +
-            ".md",
-          {
-            message: "删除文章" + name,
-            committer: {
-              name: this.BasicData.owner.login,
-              email: "",
-            },
-            owner: this.BasicData.owner.login,
-            repo: this.BasicData.name,
-            path: "content/" + this.bloglistdir + "/" + name + ".md",
-            sha: sha,
-          },
-          {
-            headers: {
-              Accept: "application/vnd.github.v3+json",
-              Authorization: "token " + this.HugoFastghpToken,
-              "X-GitHub-Api-Version": "2022-11-28",
-            },
-          }
-        )
-        .then((response) => {
-          console.log(response);
-          this.loading = false;
-          this.$notify({
-            title: "发布成功",
-            type: "success",
-          });
-          localStorage.removeItem("HugoFastallData");
-          this.$router.push("/");
-        })
-        .catch((error) => {
-          console.error(error);
-          this.loading = false;
-        });
+      this.$message.warning('删除功能仍在开发中!');
+      // axios
+      //   .delete(
+      //     "https://api.github.com/repos/" +
+      //     this.githubrepo +
+      //     "/contents/" +
+      //     this.bloglistdir +
+      //     "/" +
+      //     name +
+      //     ".md",
+      //     {
+      //       owner: this.BasicData.owner.login,
+      //       repo: this.BasicData.name,
+      //       path: this.bloglistdir + "/" + name + ".md",
+      //       message: "删除文章" + name,
+      //       committer: {
+      //         name: this.BasicData.owner.login,
+      //         email: "shuxhan@163.com",
+      //       },
+      //       sha: sha,
+      //     },
+      //     {
+      //       headers: {
+      //         Accept: "application/vnd.github+json",
+      //         Authorization: "token " + this.HugoFastghpToken,
+      //       },
+      //     }
+      //   )
+      //   .then((response) => {
+      //     console.log(response);
+      //     this.loading = false;
+      //     this.$notify({
+      //       title: "发布成功",
+      //       type: "success",
+      //     });
+      //     localStorage.removeItem("HugoFastallData");
+      //   })
+      //   .catch((error) => {
+      //     console.error(error);
+      //     this.loading = false;
+      //   });
     },
 
-    createSetting() {
-      axios
-        .put(
-          "https://api.github.com/repos/" +
-            this.githubrepo +
-            "/contents/HugoFast.config.js",
-          {
-            message: "新建 HugoFast.config.js 文件",
-            content: "",
-          },
-          {
-            headers: {
-              Accept: "application/vnd.github.v3+json",
-              Authorization: "token " + this.HugoFastghpToken,
-            },
-          }
-        )
-        .then((response) => {})
-        .catch((error) => {});
-    },
   },
   mounted() {
     this.bloglistdir = localStorage.getItem("bloglistdir");
     this.githubrepo = localStorage.getItem("HugoFastRepoName");
     this.HugoFastghpToken = localStorage.getItem("HugoFastghpToken");
-    const HugoFastBasicData = JSON.parse(localStorage.getItem("HugoFastBasicData"));
-    const HugoFast_Setting = JSON.parse(localStorage.getItem("HugoFast_Setting"));
 
     this.loadData();
 
-    if (HugoFastBasicData) {
-      this.BasicData = HugoFastBasicData;
-    } else {
-      axios
-        .get("https://api.github.com/repos/" + this.githubrepo)
-        .then((response) => {
-          localStorage.setItem("HugoFastBasicData", JSON.stringify(response.data));
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
-
-    if (HugoFast_Setting) {
-    } else {
-      axios
-        .get(
-          "https://raw.githubusercontent.com/" +
-            this.githubrepo +
-            "/main/HugoFast.config.js"
-        )
-        .then((response) => {
-          localStorage.setItem("HugoFast_Setting", JSON.stringify(response.data));
-        })
-        .catch((error) => {});
-    }
   },
 };
 </script>
