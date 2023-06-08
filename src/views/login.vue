@@ -188,7 +188,6 @@ export default {
         }
       });
     },
-    /** Log in to check */
     repoflie() {
       if (this.githubrepo == "") {
         this.loginErrorMessage = "请填写仓库名";
@@ -206,7 +205,6 @@ export default {
             };
           });
           this.restaurants = newArray;
-          console.log(this.restaurants);
           this.hide1 = true;
           this.showLoginErrorMessage = false;
         })
@@ -231,7 +229,6 @@ export default {
             };
           });
           this.restaurants1 = newArray;
-          console.log(this.restaurants1);
           this.hide1 = true;
           this.showLoginErrorMessage = false;
         })
@@ -240,6 +237,7 @@ export default {
           this.showLoginErrorMessage = true;
           console.error(error);
         });
+      console.log(this.state);
     },
     blogdir1() {
       this.hide2 = true;
@@ -253,15 +251,14 @@ export default {
             this.state1
         )
         .then((response) => {
-          const originalArray1 = response.data;
-          const originalArray2 = originalArray1.filter((item) => item.type === "dir");
-          const newArray = originalArray2.map((item) => {
+          const originalArray = response.data;
+          const originalArray1 = originalArray.filter((item) => item.type === "dir");
+          const newArray = originalArray1.map((item) => {
             return {
               value: item.name,
             };
           });
-          this.restaurants1 = newArray;
-          console.log(this.restaurants1);
+          this.restaurants2 = newArray;
           this.hide1 = true;
           this.showLoginErrorMessage = false;
         })
@@ -270,16 +267,29 @@ export default {
           this.showLoginErrorMessage = true;
           console.error(error);
         });
+      console.log(this.state1);
     },
     blogdir2() {
-      if (this.state2 != "") {
-        localStorage.setItem(
-          "bloglistdir",
-          this.state + "/" + this.state1 + "/" + this.state2
-        );
-      } else {
-        localStorage.setItem("bloglistdir", this.state + "/" + this.state1);
-      }
+      axios
+        .get(
+          "https://api.github.com/repos/" +
+            this.githubrepo +
+            "/contents/" +
+            this.state +
+            "/" +
+            this.state1 +
+            "/" +
+            this.state2
+        )
+        .then((response) => {
+          this.hide1 = true;
+          this.showLoginErrorMessage = false;
+        })
+        .catch((error) => {
+          this.loginErrorMessage = "仓库地址无效，请检查仓库地址";
+          this.showLoginErrorMessage = true;
+          console.error(error);
+        });
     },
     handleChange(value) {
       console.log(`selected ${value}`);
