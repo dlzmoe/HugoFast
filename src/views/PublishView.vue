@@ -151,7 +151,7 @@ tags:
           this.loading = false;
           this.$message.success('发布成功');
           localStorage.removeItem("HugoFastallData");
-          this.$router.push("/");
+          this.$router.push("/list");
         })
         .catch((error) => {
           console.error(error);
