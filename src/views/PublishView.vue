@@ -129,7 +129,7 @@ tags:
         .put(
           "https://api.github.com/repos/" +
           this.githubrepo +
-          "/contents/content/" +
+          "/contents/" +
           this.bloglistdir +
           "/" +
           this.result3.date +

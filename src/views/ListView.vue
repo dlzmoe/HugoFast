@@ -84,7 +84,7 @@ export default {
           .get(
             "https://api.github.com/repos/" +
               this.githubrepo +
-              "/contents/content/" +
+              "/contents/" +
               this.bloglistdir
           )
           .then((response) => {
@@ -127,7 +127,7 @@ export default {
         .delete(
           "https://api.github.com/repos/" +
             this.githubrepo +
-            "/contents/content/" +
+            "/contents/" +
             this.bloglistdir +
             "/" +
             name +

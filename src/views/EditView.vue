@@ -114,7 +114,7 @@ export default {
         .get(
           "https://raw.githubusercontent.com/" +
           this.githubrepo +
-          "/main/content/" +
+          "/main/" +
           this.bloglistdir +
           "/" +
           this.id +
@@ -191,7 +191,7 @@ tags:
         .put(
           "https://api.github.com/repos/" +
           this.githubrepo +
-          "/contents/content/" +
+          "/contents/" +
           this.bloglistdir +
           "/" +
           this.id +
