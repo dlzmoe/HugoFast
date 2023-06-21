@@ -13,7 +13,7 @@
 <script>
 import Aside from "@/components/Aside.vue";
 import TopHeader from "@/components/TopHeader.vue";
-import { marked } from 'marked';
+import { marked } from "marked";
 import axios from "axios";
 export default {
   name: "AboutView",
@@ -43,14 +43,12 @@ export default {
         .get("https://raw.githubusercontent.com/lovezsh/vue-admin-hugo/main/README.md")
         .then((response) => {
           this.articleDetail.context = marked(response.data);
-          localStorage.setItem("HugoFastAboutArticle", this.articleDetail.context)
-
+          localStorage.setItem("HugoFastAboutArticle", this.articleDetail.context);
         })
         .catch((error) => {
           console.error(error);
         });
     }
-
   },
 };
 </script>
