@@ -1,21 +1,14 @@
 ## HugoFast
 
-![image](https://imgbed.netlify.app/images/facebook_cover_photo_2.60lkt3zocic0.png)
+![](https://imgurl.zishu.me/images/old/facebook_cover_photo_2.60lkt3zocic0.png)
 
-Github: [https://github.com/lovezsh/HugoFast](https://github.com/lovezsh/HugoFast)
+Github: [https://github.com/98zi/HugoFast](https://github.com/98zi/HugoFast)
 
 项目来源于我的突发奇想，并且基于热爱折腾的心理，利用GitHub本身提供的Api，将博客管理面板化。
 
-**在线访问：**
-
-- [https://hugofast.netlify.app/](https://hugofast.netlify.app/) (长期维护)
-- [https://hugofast.zburu.com/](https://hugofast.zburu.com/) (不稳定)
-
 **用户使用文档：**
 
-使用前请详细阅读文档，其他问题欢迎提交 [issues](https://github.com/lovezsh/HugoFast/issues)
-
-- [https://hugofast-docs.netlify.app/](https://hugofast-docs.netlify.app/)
+使用前请详细阅读文档，其他问题欢迎提交 [issues](https://github.com/98zi/HugoFast/issues)
 
 ## 介绍
 
@@ -37,10 +30,10 @@ Github: [https://github.com/lovezsh/HugoFast](https://github.com/lovezsh/HugoFas
 
 **Contributors:**
 
-<a href="https://github.com/lovezsh/hugofast/graphs/contributors">
+<a href="https://github.com/98zi/hugofast/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=lovezsh/hugofast" />
 </a>
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=lovezsh/HugoFast&type=Date)](https://star-history.com/#lovezsh/HugoFast&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=98zi/HugoFast&type=Date)](https://star-history.com/#98zi/HugoFast&Date)
